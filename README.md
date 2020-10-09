@@ -1,5 +1,4 @@
-# Tip Calculator 
-#test
+# Tip Calculator
 
 ## Name: Emily Yang
 
