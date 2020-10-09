@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             in 10..14 -> tipDescription = "Acceptable"
             in 15..19 -> tipDescription = "Good"
             in 20..24 -> tipDescription = "Great"
-            else -> tipDescription = "Amazing"
+            else -> tipDescription = "Amazing!"
         }
         tvTipDescription.text = tipDescription
         val color = ArgbEvaluator().evaluate(
