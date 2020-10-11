@@ -2,9 +2,9 @@
 
 ## Name: Emily Yang
 
-**Tippy** computes the tip and total amount for a bill. The app uses the base amount and tip percentage to calculate the amount owed, and it also describes the quality of service based on the tip.
+**Tippy** computes the tip and total amount for a bill. The app uses the base amount and tip percentage to calculate the amount owed, and it also describes the quality of service based on the tip. In addition, if the user specifies the number of people in the party, the app will also split the bill evenly and calculate the amount each person would pay.
 
-Time spent: **X** hours spent in total
+Time spent: 5 hours spent in total
 
 ## Functionality 
 
@@ -17,24 +17,24 @@ The following **required** functionality is completed:
 
 The following **extensions** are implemented:
 
-* [ ] Custom colors palette selected
-* [ ] List anything else that you did to improve the app functionality or design!
+* [X] Custom colors palette selected
+* [X] Ability to split the bill across any number of people
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://gifs.com/gif/yang-emily-cs194a-tippy-GvlBg0' title='Tippy Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with gifs.com.
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+A challenge that I had with building this app was figuring out how to disable and re-enable the EditText field for the party size, since it wouldn't make sense for the user to enter in the number of people in the group before the bill amount was entered. Another challenge I had was figuring out how to clear out the party size and split amount when the bill amount was cleared out.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2020 Emily Yang
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
