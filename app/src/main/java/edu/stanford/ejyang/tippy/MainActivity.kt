@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.EditText
 import android.widget.SeekBar
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 Log.i(TAG, "afterTextChanged $s")
                 computeTipandTotal()
+                etNumPeople.isEnabled = true;
+                etNumPeople.isFocusableInTouchMode = true;
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -60,17 +63,6 @@ class MainActivity : AppCompatActivity() {
 
 
         })
-    }
-
-    private fun computeSplit() {
-        if (etNumPeople.text.isEmpty()){
-            tvSplitAmt.text = ""
-            return
-        }
-        val totalAmount = tvTotalAmount.text.toString().toDouble()
-        val partySize = etNumPeople.text.toString().toDouble()
-        val splitAmount = totalAmount / partySize
-        tvSplitAmt.text = "%.2f".format(splitAmount)
     }
 
     private fun updateTipDescription(tipPercent: Int) {
@@ -96,15 +88,35 @@ class MainActivity : AppCompatActivity() {
         if (etBase.text.isEmpty()){
             tvTipAmount.text = ""
             tvTotalAmount.text = ""
+            etNumPeople.setText("")
+            tvSplitAmt.text = ""
             return
         }
+
         val baseAmount = etBase.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
         val tipAmount = baseAmount * tipPercent / 100
         val totalAmount = baseAmount + tipAmount
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
+        computeSplit()
     }
 
+    private fun computeSplit() {
+        if (etNumPeople.text.isEmpty() || tvTotalAmount.text.isEmpty()){
+            tvSplitAmt.text = ""
+            return
+        }
+        val totalAmount = tvTotalAmount.text.toString().toDouble()
+        val partySize = etNumPeople.text.toString().toInt()
+
+        if (partySize == 0 || tvTotalAmount.text.isEmpty()){
+            tvSplitAmt.text = "%.2f".format(totalAmount)
+        }
+        else{
+            val splitAmount = totalAmount / partySize
+            tvSplitAmt.text = "%.2f".format(splitAmount)
+        }
+    }
 
 }

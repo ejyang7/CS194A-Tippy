@@ -139,7 +139,9 @@
         android:ems="5"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@id/tvNumPeople"
-        app:layout_constraintStart_toEndOf="@+id/tvNumPeople" />
+        app:layout_constraintStart_toEndOf="@+id/tvNumPeople"
+        android:editable="false"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/tvSplitAmt"
