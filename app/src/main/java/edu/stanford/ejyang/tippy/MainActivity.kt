@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
         updateTipDescription(INITIAL_TIP_PERCENT)
+
+        //When the user uses the tip bar, will update the tip description and compute bill total
         seekBarTip.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 Log.i(TAG, "onProgressChanged $progress")
@@ -30,13 +32,11 @@ class MainActivity : AppCompatActivity() {
                 computeTipandTotal()
                 computeSplit()
             }
-
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-
         })
 
+        //When user enters base amount, will compute the total bill amount with tip and enable the user to enter the party size
         etBase.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 Log.i(TAG, "afterTextChanged $s")
@@ -44,27 +44,22 @@ class MainActivity : AppCompatActivity() {
                 etNumPeople.isEnabled = true;
                 etNumPeople.isFocusableInTouchMode = true;
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
         })
 
+        //When user enters in number of people the group, will compute the amount each person pays after bill is split
         etNumPeople.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 Log.i(TAG, "afterPartyEntered $s")
                 computeSplit()
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-
         })
     }
 
+    //Updates the tip description depending on the tip amount chosen by the user
     private fun updateTipDescription(tipPercent: Int) {
         val tipDescription : String
         when (tipPercent) {
@@ -74,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             in 20..24 -> tipDescription = "Great"
             else -> tipDescription = "Amazing"
         }
+
+        //Changes the color of the tip description based on the tip amount
         tvTipDescription.text = tipDescription
         val color = ArgbEvaluator().evaluate(
             tipPercent.toFloat() / seekBarTip.max,
@@ -83,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         tvTipDescription.setTextColor(color)
     }
 
+    //Computes the bill total amount based on the base amount and tip specified by the user
     private fun computeTipandTotal() {
         //Get the value of the base and tip percent
         if (etBase.text.isEmpty()){
@@ -102,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         computeSplit()
     }
 
+    //If the user enters the group size, will split the bill evenly and calculate the amount each person should pay
     private fun computeSplit() {
         if (etNumPeople.text.isEmpty() || tvTotalAmount.text.isEmpty()){
             tvSplitAmt.text = ""
