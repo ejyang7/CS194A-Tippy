@@ -24,7 +24,7 @@ The following **extensions** are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://gifs.com/gif/yang-emily-cs194a-tippy-GvlBg0' title='Tippy Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://j.gifs.com/GvlBg0.gif' title='Tippy Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with gifs.com.
 
